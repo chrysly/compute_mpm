@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/2. MLS_MPM_NeoHookean_Multithreaded/MLS_MPM_NeoHookean_Multithreaded.unity
+  isLoaded: 1
+  isActive: 1

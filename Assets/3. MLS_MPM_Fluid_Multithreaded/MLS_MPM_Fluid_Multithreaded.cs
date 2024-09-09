@@ -64,7 +64,6 @@ public class MLS_MPM_Fluid_Multithreaded : MonoBehaviour {
         for (float i = sx - box_x / 2; i < sx + box_x / 2; i += spacing) {
             for (float j = sy - box_y / 2; j < sy + box_y / 2; j += spacing) {
                 var pos = math.float2(i, j);
-
                 temp_positions.Add(pos);
             }
         }
@@ -175,8 +174,8 @@ public class MLS_MPM_Fluid_Multithreaded : MonoBehaviour {
     [BurstCompile]
     unsafe struct Job_P2G_1 : IJob {
         public NativeArray<Particle> ps;
-        [ReadOnly] public NativeArray<Cell> grid;
-        [ReadOnly] public int num_particles;
+        public NativeArray<Cell> grid;
+        public int num_particles;
         
         public void Execute() {
             var weights = stackalloc float2[3];
@@ -220,8 +219,8 @@ public class MLS_MPM_Fluid_Multithreaded : MonoBehaviour {
     [BurstCompile]
     unsafe struct Job_P2G_2 : IJob {
         public NativeArray<Cell> grid;
-        [ReadOnly] public NativeArray<Particle> ps;
-        [ReadOnly] public int num_particles;
+        public NativeArray<Particle> ps;
+        public int num_particles;
 
         // we now have 2 P2G phases as we need to ensure we have scattered particle masses to the grid,
         // in order to get our density estimate at each frame
